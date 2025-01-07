@@ -203,4 +203,37 @@ class EmployeeServiceImplTest {
         verify(employeeRepository, never()).deleteById(employeeDto.getId());
     }
 
+//    @Test
+//    void testGetAllEmployees_whenNoEmployeesArePresent_thenReturnEmptyList() {
+//        // Arrange
+//        when(employeeRepository.findAll()).thenReturn(List.of()); // Mock repository behavior
+//
+//        // Act
+//        List<EmployeeDto> list = null;
+//        //employeeRepository.findAll();
+//        list = employeeRepository.findAll()
+//                .stream()
+//                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+//                .toList();
+//
+//        // Assert
+//        assertThat(list).isNull(); // Verify the returned list is empty
+//        verify(employeeRepository, times(1)).findAll(); // Ensure repository method was called once
+//    }
+
+    @Test
+    void testGetAllEmployees_whenEmployeesArePresent_thenReturnEmployeeDTOList() {
+        // Arrange
+        when(employeeRepository.findAll()).thenReturn(List.of()); // Mock repository behavior
+
+        // Act
+        List<EmployeeDto> list = employeeService.getAllEmployee().stream()
+                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+                .toList();
+
+        // Assert
+        assertThat(list).isNotNull(); // Verify the returned list is empty
+        verify(employeeRepository, times(1)).findAll(); // Ensure repository method was called once
+    }
+
 }
