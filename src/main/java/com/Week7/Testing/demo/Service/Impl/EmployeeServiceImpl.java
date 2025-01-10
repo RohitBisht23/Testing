@@ -67,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         //If Employee is not present with this id then simply create it
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() ->{
-                    log.info("Employee with id {} not found", employeeDto.getId());
+                    log.info("Employee with id {} not found", id);
                     return new ResourceNotFoundException("The employee not found here with id "+id);
                 });
 

@@ -87,6 +87,14 @@
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
 
+
+		<!--INTEGRATION TESTING NEEDED DEPENDENCIES -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

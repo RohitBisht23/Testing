@@ -2,9 +2,6 @@ package com.Week7.Testing.demo.Controller;
 
 import com.Week7.Testing.demo.Dto.EmployeeDto;
 import com.Week7.Testing.demo.Service.EmployeeService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +27,7 @@ public class EmployeeController {
     @PostMapping("/newEmployee")
     public ResponseEntity<EmployeeDto> addNewEmployee(@RequestBody EmployeeDto employee) {
         EmployeeDto newEmployee = employeeService.createNewEmployee(employee);
-        return ResponseEntity.ok(newEmployee);
+        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
     @GetMapping

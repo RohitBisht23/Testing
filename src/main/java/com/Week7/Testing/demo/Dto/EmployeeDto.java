@@ -1,20 +1,19 @@
 package com.Week7.Testing.demo.Dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
+@Builder
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class EmployeeDto {
     private Long id;
     private String email;
     private String name;
     private Long salary;
+
 
     @Override
     public boolean equals(Object o) {
