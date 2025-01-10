@@ -54,7 +54,7 @@ class EmployeeControllerTestIT {
         //Save employee
         Employee savedEmployee = employeeRepository.save(testEmployee);
         webTestClient.get()
-                .uri("/employee/{id}", testEmployee.getId())
+                .uri("/employee/{id}", savedEmployee.getId())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
@@ -114,7 +114,6 @@ class EmployeeControllerTestIT {
                 .bodyValue(testEmployeeeDto)
                 .exchange()
                 .expectStatus().isNotFound();
-
     }
 
     @Test
@@ -135,9 +134,10 @@ class EmployeeControllerTestIT {
         Employee savedEmployee = employeeRepository.save(testEmployee);
         testEmployeeeDto.setName("Ram Singh");
         testEmployeeeDto.setSalary(98000L);
+        testEmployeeeDto.setId(savedEmployee.getId());
 
         webTestClient.put()
-                .uri("/employee/1")
+                .uri("/employee/{id}", savedEmployee.getId())
                 .bodyValue(testEmployeeeDto)
                 .exchange()
                 .expectStatus().isOk()
