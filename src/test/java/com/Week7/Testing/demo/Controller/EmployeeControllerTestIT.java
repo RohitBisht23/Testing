@@ -3,24 +3,11 @@ package com.Week7.Testing.demo.Controller;
 import com.Week7.Testing.demo.Dto.EmployeeDto;
 import com.Week7.Testing.demo.Entity.Employee;
 import com.Week7.Testing.demo.Repository.EmployeeRepository;
-import com.Week7.Testing.demo.TestContainerConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.web.reactive.server.WebTestClient;
 
-
-
-@AutoConfigureWebTestClient
-@Import(TestContainerConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class EmployeeControllerTestIT {
-
-    @Autowired
-    private WebTestClient webTestClient;
+class EmployeeControllerTestIT extends AbstractIntegrationTest{
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -31,22 +18,7 @@ class EmployeeControllerTestIT {
 
     @BeforeEach
     void setUp() {
-        testEmployee = Employee.builder()
-                .id(1L)
-                .name("Rohit Bisht")
-                .email("rohitbisht0911@gmail.com")
-                .salary(89880L)
-                .build();
-
-        testEmployeeeDto = EmployeeDto.builder()
-                .id(1L)
-                .name("Rohit Bisht")
-                .email("rohitbisht0911@gmail.com")
-                .salary(89880L)
-                .build();
-
         employeeRepository.deleteAll(); //Keep deleting the employee repository
-        //testEmployeeeDto = modelMapper.map(employee, EmployeeDto.class);
     }
 
     @Test
